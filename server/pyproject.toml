@@ -1,0 +1,37 @@
+[project]
+name = "product-admin-server"
+version = "0.1.0"
+description = "제품 관리 어드민 로컬 MVP 서버"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115,<1",
+    "openpyxl>=3.1.5",
+    "pillow>=12.3.0",
+    "python-multipart>=0.0.32",
+    "uvicorn[standard]>=0.34,<1",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+    "ruff>=0.11,<1",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore:wmf image format is not supported:UserWarning", "ignore:Using `httpx` with `starlette.testclient`:DeprecationWarning"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
